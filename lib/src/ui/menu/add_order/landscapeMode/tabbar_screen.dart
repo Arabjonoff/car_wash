@@ -1,19 +1,28 @@
 import 'package:car_wash/src/app_color.dart';
+import 'package:car_wash/src/ui/menu/add_order/landscapeMode/addCar/add_car_screen.dart';
+import 'package:car_wash/src/ui/menu/add_order/landscapeMode/service/service_screen.dart';
+import 'package:car_wash/src/ui/menu/home/home_screen.dart';
 import 'package:car_wash/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key}) : super(key: key);
+class TabbarScreen extends StatefulWidget {
+  const TabbarScreen({Key? key}) : super(key: key);
 
   @override
-  _OrderScreenState createState() => _OrderScreenState();
+  State<TabbarScreen> createState() => _TabbarScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
-  final TextEditingController _numberController = TextEditingController();
-  String dropdownValue = 'Markani tanlang';
+class _TabbarScreenState extends State<TabbarScreen> with TickerProviderStateMixin {
+  TabController? controller;
+  @override
+  void initState() {
+    controller = TabController(length: 3, vsync: this);
+    controller!.addListener(() {
+    });
+    super.initState();
+  }
   String dropdownValue1 = 'Modelni tanlang';
   String dropdownValue2 = 'Rangi tanlang';
   bool container = false;
@@ -47,6 +56,7 @@ class _OrderScreenState extends State<OrderScreen> {
     'BMW',
     'Mers',
   ];
+
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
@@ -61,6 +71,54 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
   @override
+  Widget landscapeMode(double h, double w,) {
+    double h = Utils.getHeight(context);
+    double w = Utils.getWidth(context);
+    return Scaffold(
+      backgroundColor: AppColor.background,
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text(
+          'Buyurtma olish',
+          style: TextStyle(
+            fontSize: 36 * h,
+            color: AppColor.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: AppColor.background,
+        bottom: TabBar(
+          controller: controller,
+          tabs: [
+            Container(
+              width: double.infinity,
+              child: Center(child: Text('Mashina',style: TextStyle(fontSize: 24*h,color: AppColor.blue),)),
+            ),
+            Container(
+              width: double.infinity,
+              child: Center(child: Text('Xizmatlar',style: TextStyle(fontSize: 24*h,color: AppColor.grey),)),
+            ),
+            Container(
+              width: double.infinity,
+              child: Center(child: Text('Ma’lumoti',style: TextStyle(fontSize: 24*h,color: AppColor.grey),)),
+            ),
+
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: controller,
+        children: [
+          AddCarScreen(),
+          ServiceScreen(),
+          Container(
+            color: Colors.blue,
+          ),
+        ],
+      ),
+    );
+  }
   Widget portraitMode(double h, double w,BuildContext context) {
     double w = Utils.getWidth(context);
     double h = Utils.getHeight(context);
@@ -82,7 +140,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 child: Text(
                   'Buyurtma olish',
                   style:
-                      TextStyle(fontSize: 36 * h, fontWeight: FontWeight.w600),
+                  TextStyle(fontSize: 36 * h, fontWeight: FontWeight.w600),
                 ),
               ),
               SizedBox(width: 32 * w),
@@ -143,7 +201,7 @@ class _OrderScreenState extends State<OrderScreen> {
             child: Container(
               margin: EdgeInsets.only(left: 70 * w, right: 70 * w),
               padding:
-                  EdgeInsets.symmetric(vertical: 70 * h, horizontal: 50 * w),
+              EdgeInsets.symmetric(vertical: 70 * h, horizontal: 50 * w),
               decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
@@ -296,7 +354,6 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                             alignment: Alignment.centerLeft,
                             child: TextField(
-                              controller: _numberController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Telfon raqami',
@@ -384,152 +441,152 @@ class _OrderScreenState extends State<OrderScreen> {
                             flex: 45,
                             child: container
                                 ? Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 30 * w),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: AppColor.blue),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 20 * w,
-                                        ),
-                                        Row(
-                                          children: [
-                                            FlutterSwitch(
-                                                activeColor: AppColor.blue,
-                                                inactiveColor: AppColor.grey,
-                                                width: 60 * w,
-                                                height: 30 * h,
-                                                toggleSize: 22.5 * h,
-                                                value: on1,
-                                                onToggle: (onToggle) {
-                                                  setState(() {
-                                                    on1 = onToggle;
-                                                  });
-                                                }),
-                                            SizedBox(
-                                              width: 20 * w,
-                                            ),
-                                            Text(
-                                              'Chang yutgich',
-                                              style:
-                                                  TextStyle(fontSize: 24 * h),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 20 * w,
-                                        ),
-                                        Row(
-                                          children: [
-                                            FlutterSwitch(
-                                                activeColor: AppColor.blue,
-                                                inactiveColor: AppColor.grey,
-                                                width: 60 * w,
-                                                height: 30 * h,
-                                                toggleSize: 22.5 * h,
-                                                value: on1,
-                                                onToggle: (onToggle) {
-                                                  setState(() {
-                                                    on1 = onToggle;
-                                                  });
-                                                }),
-                                            SizedBox(
-                                              width: 20 * w,
-                                            ),
-                                            Text(
-                                              'Ko‘pirtirgich',
-                                              style:
-                                                  TextStyle(fontSize: 24 * h),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 20 * w,
-                                        ),
-                                        Row(
-                                          children: [
-                                            FlutterSwitch(
-                                                activeColor: AppColor.blue,
-                                                inactiveColor: AppColor.grey,
-                                                width: 60 * w,
-                                                height: 30 * h,
-                                                toggleSize: 22.5 * h,
-                                                value: on1,
-                                                onToggle: (onToggle) {
-                                                  setState(() {
-                                                    on1 = onToggle;
-                                                  });
-                                                }),
-                                            SizedBox(
-                                              width: 20 * w,
-                                            ),
-                                            Text(
-                                              'Hushbo‘ylik',
-                                              style:
-                                                  TextStyle(fontSize: 24 * h),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 20 * w,
-                                        ),
-                                        Row(
-                                          children: [
-                                            FlutterSwitch(
-                                                activeColor: AppColor.blue,
-                                                inactiveColor: AppColor.grey,
-                                                width: 60 * w,
-                                                height: 30 * h,
-                                                toggleSize: 22.5 * h,
-                                                value: on1,
-                                                onToggle: (onToggle) {
-                                                  setState(() {
-                                                    on1 = onToggle;
-                                                  });
-                                                }),
-                                            SizedBox(
-                                              width: 20 * w,
-                                            ),
-                                            Text(
-                                              'Ko‘pirtirgich',
-                                              style:
-                                                  TextStyle(fontSize: 24 * h),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 20 * w,
-                                        ),
-                                        Row(
-                                          children: [
-                                            FlutterSwitch(
-                                                activeColor: AppColor.blue,
-                                                inactiveColor: AppColor.grey,
-                                                width: 60 * w,
-                                                height: 30 * h,
-                                                toggleSize: 22.5 * h,
-                                                value: on1,
-                                                onToggle: (onToggle) {
-                                                  setState(() {
-                                                    on1 = onToggle;
-                                                  });
-                                                }),
-                                            SizedBox(
-                                              width: 20 * w,
-                                            ),
-                                            Text(
-                                              'Ko‘pirtirgich',
-                                              style:
-                                                  TextStyle(fontSize: 24 * h),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  )
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 30 * w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: AppColor.blue),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 20 * w,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FlutterSwitch(
+                                          activeColor: AppColor.blue,
+                                          inactiveColor: AppColor.grey,
+                                          width: 60 * w,
+                                          height: 30 * h,
+                                          toggleSize: 22.5 * h,
+                                          value: on1,
+                                          onToggle: (onToggle) {
+                                            setState(() {
+                                              on1 = onToggle;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        width: 20 * w,
+                                      ),
+                                      Text(
+                                        'Chang yutgich',
+                                        style:
+                                        TextStyle(fontSize: 24 * h),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20 * w,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FlutterSwitch(
+                                          activeColor: AppColor.blue,
+                                          inactiveColor: AppColor.grey,
+                                          width: 60 * w,
+                                          height: 30 * h,
+                                          toggleSize: 22.5 * h,
+                                          value: on1,
+                                          onToggle: (onToggle) {
+                                            setState(() {
+                                              on1 = onToggle;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        width: 20 * w,
+                                      ),
+                                      Text(
+                                        'Ko‘pirtirgich',
+                                        style:
+                                        TextStyle(fontSize: 24 * h),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20 * w,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FlutterSwitch(
+                                          activeColor: AppColor.blue,
+                                          inactiveColor: AppColor.grey,
+                                          width: 60 * w,
+                                          height: 30 * h,
+                                          toggleSize: 22.5 * h,
+                                          value: on1,
+                                          onToggle: (onToggle) {
+                                            setState(() {
+                                              on1 = onToggle;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        width: 20 * w,
+                                      ),
+                                      Text(
+                                        'Hushbo‘ylik',
+                                        style:
+                                        TextStyle(fontSize: 24 * h),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20 * w,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FlutterSwitch(
+                                          activeColor: AppColor.blue,
+                                          inactiveColor: AppColor.grey,
+                                          width: 60 * w,
+                                          height: 30 * h,
+                                          toggleSize: 22.5 * h,
+                                          value: on1,
+                                          onToggle: (onToggle) {
+                                            setState(() {
+                                              on1 = onToggle;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        width: 20 * w,
+                                      ),
+                                      Text(
+                                        'Ko‘pirtirgich',
+                                        style:
+                                        TextStyle(fontSize: 24 * h),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20 * w,
+                                  ),
+                                  Row(
+                                    children: [
+                                      FlutterSwitch(
+                                          activeColor: AppColor.blue,
+                                          inactiveColor: AppColor.grey,
+                                          width: 60 * w,
+                                          height: 30 * h,
+                                          toggleSize: 22.5 * h,
+                                          value: on1,
+                                          onToggle: (onToggle) {
+                                            setState(() {
+                                              on1 = onToggle;
+                                            });
+                                          }),
+                                      SizedBox(
+                                        width: 20 * w,
+                                      ),
+                                      Text(
+                                        'Ko‘pirtirgich',
+                                        style:
+                                        TextStyle(fontSize: 24 * h),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
                                 : Container()),
                         SizedBox(
                           height: 30 * h,
@@ -582,25 +639,4 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
-  Widget landscapeMode(double h, double w,) {
-    double w = Utils.getWidth(context);
-    double h = Utils.getHeight(context);
-    return Scaffold(
-      backgroundColor: AppColor.background,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColor.background,
-        centerTitle: false,
-        title: Text(
-          'Buyurtma olish',
-          style: TextStyle(
-            fontSize: 36 * h,
-            color: AppColor.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      body: Container());
-  }
-
 }

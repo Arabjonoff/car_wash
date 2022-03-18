@@ -1,5 +1,6 @@
 import 'package:car_wash/src/app_color.dart';
 import 'package:car_wash/src/ui/menu/add_order/order_screen.dart';
+import 'package:car_wash/src/ui/menu/add_order/landscapeMode/tabbar_screen.dart';
 import 'package:car_wash/src/ui/menu/home/home_screen.dart';
 import 'package:car_wash/src/ui/menu/settings/setting_screen.dart';
 import 'package:car_wash/src/ui/menu/wait/wait_screen.dart';
@@ -20,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   final PageController _controller = PageController(initialPage: 0);
   List<Widget> data = [
     const HomeScreen(),
-    const OrderScreen(),
+    const TabbarScreen(),
     const WaitScreen(),
     const WashingScreen(),
     const SettingsScreen(),
@@ -43,6 +44,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget portraitMode(double h, double w, BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Row(
         children: [
           Container(
@@ -211,10 +213,14 @@ class _MainScreenState extends State<MainScreen> {
                     height: 70 * h,
                     width: 70 * h,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: _selectedIndex == 5 ? AppColor.white:AppColor.grey),
-                        color: _selectedIndex ==5?AppColor.blue:AppColor.white
-                    ),
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                            color: _selectedIndex == 5
+                                ? AppColor.white
+                                : AppColor.grey),
+                        color: _selectedIndex == 5
+                            ? AppColor.blue
+                            : AppColor.white),
                     child: Center(
                       child: SvgPicture.asset(
                         'assets/icons/settings.svg',
@@ -264,22 +270,50 @@ class _MainScreenState extends State<MainScreen> {
         itemCount: data.length, // Can be null
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        unselectedFontSize: 14,
+        selectedFontSize: 14,
         currentIndex: _selectedIndex,
         onTap: (_index) {
           change(_index);
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit_outlined),
-            label: '',
+            icon: SvgPicture.asset(
+              'assets/icons/home.svg',
+              color: _selectedIndex == 0 ? AppColor.blue : AppColor.grey,
+            ),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit_outlined),
-            label: '',
+            icon: Center(
+              child: SvgPicture.asset(
+                'assets/icons/add.svg',
+                color: _selectedIndex == 1 ? AppColor.blue : AppColor.grey,
+              ),
+            ),
+            label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit_outlined),
-            label: '',
+            icon: SvgPicture.asset(
+              'assets/icons/car.svg',
+              color: _selectedIndex == 2 ? AppColor.blue : AppColor.grey,
+            ),
+            label: 'Wait',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/car.svg',
+              color: _selectedIndex == 3 ? AppColor.blue : AppColor.grey,
+            ),
+            label: 'Washing',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/icons/car.svg',
+              color: _selectedIndex == 4 ? AppColor.blue : AppColor.grey,
+            ),
+            label: 'Setting',
           ),
         ],
       ),
@@ -292,7 +326,7 @@ class _MainScreenState extends State<MainScreen> {
       _controller.animateToPage(
         _selectedIndex,
         duration: const Duration(milliseconds: 270),
-        curve: Curves.easeInOut,
+        curve: Curves.easeIn,
       );
     });
   }

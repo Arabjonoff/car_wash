@@ -17,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
     double w = Utils.getWidth(context);
     double h = Utils.getHeight(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       body: OrientationBuilder(
         builder: (context, orientation) {
           if (orientation == Orientation.portrait) {
