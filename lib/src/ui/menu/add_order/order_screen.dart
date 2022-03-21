@@ -34,34 +34,20 @@ class _OrderScreenState extends State<OrderScreen> {
   ];
   var items1 = [
     'Modelni tanlang',
-    'Chevrolet',
-    'Audi',
-    'BMW',
-    'Mers',
+    'Malibu',
+    'Nexia',
+    'Matiz',
+    'Spark',
   ];
 
   var items2 = [
     'Rangi tanlang',
-    'Chevrolet',
-    'Audi',
-    'BMW',
-    'Mers',
+    'Qora',
+    'Oq',
+    'Qizil',
   ];
-  Widget build(BuildContext context) {
-    double h = Utils.getHeight(context);
-    double w = Utils.getWidth(context);
-    return OrientationBuilder(
-      builder: (context, orientation) {
-        if (orientation == Orientation.portrait) {
-          return landscapeMode(h, w);
-        } else {
-          return portraitMode(h, w, context);
-        }
-      },
-    );
-  }
   @override
-  Widget portraitMode(double h, double w,BuildContext context) {
+  Widget build(BuildContext context) {
     double w = Utils.getWidth(context);
     double h = Utils.getHeight(context);
     return Scaffold(
@@ -582,25 +568,4 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
-  Widget landscapeMode(double h, double w,) {
-    double w = Utils.getWidth(context);
-    double h = Utils.getHeight(context);
-    return Scaffold(
-      backgroundColor: AppColor.background,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColor.background,
-        centerTitle: false,
-        title: Text(
-          'Buyurtma olish',
-          style: TextStyle(
-            fontSize: 36 * h,
-            color: AppColor.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      body: Container());
-  }
-
 }

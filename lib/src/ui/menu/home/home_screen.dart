@@ -1,6 +1,7 @@
 import 'package:car_wash/src/app_color.dart';
 import 'package:car_wash/src/bloc/home_bloc.dart';
 import 'package:car_wash/src/utils/utils.dart';
+import 'package:car_wash/src/widgets/home/home_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -924,31 +925,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 30 * h),
-                      Center(
-                        child: SvgPicture.asset(
-                          'assets/icons/money_recive.svg',
-                        ),
-                      ),
-                      SizedBox(height: 32 * h),
-                      Text(
-                        'Kirim',
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                      Text(
-                        '12111 UZS',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                    ],
+                  child: const HomeGridWidget(
+                    colorText: AppColor.white,
+                    price: 1121,
+                    color: AppColor.blue,
+                    icon: 'assets/icons/money_recive.svg',
+                    name: 'Kirim',
                   ),
                 ),
               ),
@@ -971,31 +953,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 30 * h),
-                      Center(
-                        child: SvgPicture.asset(
-                          'assets/icons/money_send.svg',
-                        ),
-                      ),
-                      SizedBox(height: 32 * h),
-                      Text(
-                        'Chiqim',
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                      Text(
-                        '- 12111 UZS',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                    ],
+                  child: const HomeGridWidget(
+                    colorText: AppColor.white,
+                    price: 1121,
+                    color: AppColor.yellow,
+                    icon: 'assets/icons/money_send.svg',
+                    name: 'Chiqim',
                   ),
                 ),
               ),
@@ -1028,31 +991,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 30 * h),
-                      Center(
-                        child: SvgPicture.asset(
-                          'assets/icons/car3.svg',
-                        ),
-                      ),
-                      SizedBox(height: 32 * h),
-                      Text(
-                        'Navabat',
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                      Text(
-                        '3 ta',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                    ],
+                  child: const HomeGridWidget(
+                    colorText: AppColor.white,
+                    price: 2,
+                    color: AppColor.blue,
+                    icon: 'assets/icons/car3.svg',
+                    name: 'Navabt',
                   ),
                 ),
               ),
@@ -1075,31 +1019,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 30 * h),
-                      Center(
-                        child: SvgPicture.asset(
-                          'assets/icons/car3.svg',
-                        ),
-                      ),
-                      SizedBox(height: 32 * h),
-                      Text(
-                        'Yuvulmoqda',
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                      Text(
-                        '10 ta',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 36 * h,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.white),
-                      ),
-                    ],
+                  child: const HomeGridWidget(
+                    colorText: AppColor.white,
+                    price: 2,
+                    color: AppColor.yellow,
+                    icon: 'assets/icons/car3.svg',
+                    name: 'Yuvulmoqda',
                   ),
                 ),
               ),
@@ -1135,7 +1060,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 50 * w,
+                        height: 30 * w,
                       ),
                       Row(
                         children: [
@@ -1165,7 +1090,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 50 * h,
+                        height: 30 * h,
                       ),
                       Container(
                           margin: EdgeInsets.symmetric(horizontal: 50 * w),
@@ -1176,18 +1101,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemCount: 22,
                               itemBuilder: (context, index) {
                                 return Container(
-                                  margin:
-                                      EdgeInsets.symmetric(horizontal: 20 * w),
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20 * w,
+                                  ),
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 20 * w),
+                                      horizontal: 20 * w,
+                                    ),
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                          color:
-                                              AppColor.grey.withOpacity(0.6)),
+                                        color: AppColor.grey.withOpacity(0.6),
+                                      ),
                                       borderRadius: BorderRadius.circular(10),
                                       color: const Color.fromRGBO(
-                                          255, 255, 255, 0.2),
+                                        255,
+                                        255,
+                                        255,
+                                        0.2,
+                                      ),
                                     ),
                                     child: Column(
                                       children: [
@@ -1243,15 +1174,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'Yanvar,' +index.toString(),
+                                        'Yanvar,' + index.toString(),
                                         style: TextStyle(
                                           fontSize: 18 * h,
                                           color: AppColor.white,
                                         ),
                                       ),
                                       const Spacer(),
-                                     SvgPicture.asset('assets/icons/cloud.svg',width: 44,),
-                                     const  Spacer(),
+                                      SvgPicture.asset(
+                                        'assets/icons/cloud.svg',
+                                        width: 44,
+                                      ),
+                                      const Spacer(),
                                       Text(
                                         '29',
                                         style: TextStyle(

@@ -9,9 +9,22 @@ class WaitScreen extends StatefulWidget {
   _WaitScreenState createState() => _WaitScreenState();
 }
 
+
 class _WaitScreenState extends State<WaitScreen> {
-  @override
   Widget build(BuildContext context) {
+    double h = Utils.getHeight(context);
+    double w = Utils.getWidth(context);
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        if (orientation == Orientation.portrait) {
+          return landscapeMode(h, w);
+        } else {
+          return portraitMode(h, w, context);
+        }
+      },
+    );
+  }
+  Widget portraitMode(double h,double w,BuildContext context) {
     double w = Utils.getWidth(context);
     double h = Utils.getHeight(context);
     return Scaffold(
@@ -117,5 +130,45 @@ class _WaitScreenState extends State<WaitScreen> {
         ],
       ),
     );
+  }
+  Widget landscapeMode(double h,double w,) {
+    double w = Utils.getWidth(context);
+    double h = Utils.getHeight(context);
+    double w1 = Utils.getLanWidth(context);
+    double h2 = Utils.getLanHeight(context);
+    return Scaffold(
+      backgroundColor: const Color(0xFFF6F6F6),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColor.background,
+        centerTitle: false,
+        title: Text('Navbat',style: TextStyle(color: AppColor.black,fontSize: 48*h,),),
+      ),
+      body: Column(
+        children: [
+          Expanded(child: ListView.builder(
+            itemCount: 22,
+            itemBuilder: (context,index){
+            return Row(
+              children: [
+                SizedBox(width: 16*w1,),
+                Container(
+                  margin: EdgeInsets.only(bottom: 19),
+                  width: 165*w1,
+                  height: double.infinity,
+                  color: Colors.redAccent,
+                ),
+                SizedBox(width: 16*w1,),
+                Container(
+                  margin: EdgeInsets.only(bottom: 19),
+                  width: 165*w1,
+                  height: double.infinity,
+                  color: Colors.redAccent,
+                ),
+              ],
+            );
+          },),),
+        ],
+      ),);
   }
 }

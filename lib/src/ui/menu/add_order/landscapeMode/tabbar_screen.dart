@@ -75,6 +75,7 @@ class _TabbarScreenState extends State<TabbarScreen> with TickerProviderStateMix
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.background,
       appBar: AppBar(
         centerTitle: false,

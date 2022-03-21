@@ -21,3 +21,4 @@ class HomeModel {
     requestUser: json["request_user"] ?? 0,
   );
 }
+

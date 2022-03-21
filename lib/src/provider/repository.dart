@@ -5,4 +5,5 @@ class Repository {
   final AppProvider _provider = AppProvider();
 
   Future<HttpResult> getHome() => _provider.getHome();
+  Future<HttpResult> getWeather() => _provider.getWeather();
 }

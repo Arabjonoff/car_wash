@@ -49,4 +49,26 @@ class AppProvider {
     String url = baseUrl + 'api/home/';
     return await _getRequest(url);
   }
+
+  Future<HttpResult> weather(String url) async {
+    String url =
+        "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily?lat=41.31&lon=69.29";
+    print(url);
+    http.Response response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'x-rapidapi-host': 'weatherbit-v1-mashape.p.rapidapi.com',
+        'x-rapidapi-key': 'd7a48198e5msh18d8ace54ab62cdp114cb2jsn544fd6639893',
+      },
+    );
+    print(response);
+
+    return _result(response);
+  }
+
+
+  Future<HttpResult> getWeather() async {
+    String url ="https://weatherbit-v1-mashape.p.rapidapi.com/forecast/daily?lat=41.31&lon=69.29";
+    return await weather(url);
+  }
 }

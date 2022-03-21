@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   final PageController _controller = PageController(initialPage: 0);
   List<Widget> data = [
     const HomeScreen(),
-    const TabbarScreen(),
+    const OrderScreen(),
     const WaitScreen(),
     const WashingScreen(),
     const SettingsScreen(),
